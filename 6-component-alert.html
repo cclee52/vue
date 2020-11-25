@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/3-style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body class="bg-dark">
+
+    <div id="app" class="container">
+
+      <div class="row justify-content-center">
+        <div class="col">
+
+          <alart title="Fault!!!" message="It raise Error." type="warning"></alart>
+          <alart title="Success" message="Successfully Done!" type="success"></alart>
+          <alart title="OH NO!" message="Your Database Get Down!!!" type="danger"></alart>
+
+        </div>
+      </div>
+    
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+      // create a component here and use it in body, but note that yout data must  define in the component as a return object
+      Vue.component('alart', {
+        // define attributes here as props
+        props: ['title', 'message', 'type'],
+        // simple class use the same in :class props but the complex class call from data as define here
+        // v-show directive hide the element if it gets false, but if use v-if directive, the element will delete from html inspect
+        // ****** in lines 45, 50, 53 use <`> its under the esc key in keyboard, its not qoutation mark ******
+        template: `<div :class="['alert', classAlert]" v-show=isActive role="alert">
+                    <strong>{{ title}}</strong> {{ message }}
+                    <button type="button" class="close" @click="isActive = false" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>`,
+        data() {
+          return {
+            classAlert: `alert-${this.type}`,
+            isActive: true
+          }
+        }
+      });
+
+      let app = new Vue ({
+        el: "#app",
+        data: {
+          counter: 0
+        }
+      });
+
+    </script>
+  </body>
+</html>
